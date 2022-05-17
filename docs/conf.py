@@ -28,7 +28,7 @@ author = 'Our World in Data'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx_click",
+    # "sphinx_click",
     "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
