@@ -3,15 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Our World in Data
-=====================================
+OWID documentation
+==================
 
 Welcome to our technical information! We envision this space as a hub for all our official technical documentation for
 various of our projects, including software libraries. 
 
 
 Contents
--------
+--------
 
 Currently we provide documentation for:
 
