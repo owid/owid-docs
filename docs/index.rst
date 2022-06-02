@@ -3,18 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to owid-docs's documentation!
+Our World in Data
 =====================================
+
+Welcome to our technical information! We envision this space as a hub for all our official technical documentation for
+various of our projects, including software libraries. 
+
+
+Contents
+-------
+
+Currently we provide documentation for:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   covid-19-data <https://docs.owid.io/projects/covid>
+   owid-datautils <https://docs.owid.io/projects/datautils>
