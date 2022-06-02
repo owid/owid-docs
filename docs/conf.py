@@ -59,6 +59,8 @@ html_theme_options = {
 
 html_logo = "_static/owid.png"
 
+html_favicon = '_static/favicon.ico'
+
 html_context = {
     "display_github": True,  # Integrate GitHub
     "github_user": "owid",  # Username
