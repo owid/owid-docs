@@ -19,4 +19,5 @@ Currently we provide documentation for:
    :maxdepth: 2
 
    covid-19-data <https://docs.owid.io/projects/covid>
+   etl <https://docs.owid.io/projects/etl>
    owid-datautils <https://docs.owid.io/projects/datautils>
