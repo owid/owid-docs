@@ -1,5 +1,2 @@
-Sphinx>=4.4.0
-myst-parser>=0.16.1
-furo>=2022.1.2
 mkdocs>=1.5.1
 mkdocs-material>=9.5.1
