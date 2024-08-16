@@ -29,7 +29,7 @@ Here you can find the links to our various projects and their respective documen
 
     Learn more about our visualisation and website infrastructure.
 
--   __[:material-virus: &nbsp; covid-19-data :octicons-link-external-16:]([https://docs.owid.io/projects/etl/](https://docs.owid.io/projects/etl/api/covid)__
+-   __[:material-virus: &nbsp; covid-19-data :octicons-link-external-16:](https://docs.owid.io/projects/etl/api/covid)__
 
     ---
 
