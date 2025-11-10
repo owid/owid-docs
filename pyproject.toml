@@ -1,0 +1,6 @@
+[project]
+name = "owid-docs"
+version = "0.1.0"
+description = "Technical documentation for Our World in Data"
+requires-python = ">=3.12"
+dependencies = ["zensical>=0.0.5"]
