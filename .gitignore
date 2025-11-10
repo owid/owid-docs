@@ -1,2 +1,13 @@
 venv
 docs/_build
+
+# uv virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Zensical build output
+site/
