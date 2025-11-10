@@ -1,0 +1,159 @@
+# Zensical Configuration for OWID Documentation
+# This file is ready for when Zensical is fully released
+# Currently Zensical is in alpha - continue using mkdocs.yml until Zensical is stable
+
+[project]
+# Basic site information
+site_name = "OWID documentation"
+site_url = "https://docs.owid.io/"
+site_author = "Our World in Data"
+site_description = "Technical documentation at Our World in Data."
+
+# Copyright notice (supports HTML)
+copyright = "Copyright &copy; 2025 Our World in Data"
+
+# Directory structure (defaults shown, customize if needed)
+# docs_dir = "docs"
+# site_dir = "site"
+
+# Theme configuration
+# variant = "modern"  # Options: "modern" (default) or "classic" (matches Material for MkDocs look)
+variant = "modern" # Using classic for consistency with current Material theme
+
+# URL format
+# use_directory_urls = true  # Default: true (creates /page/ instead of /page.html)
+
+# Development server
+# dev_addr = "localhost:8000"  # Default address for local server
+
+# Custom data for templates
+[project.extra]
+homepage = "https://docs.owid.io/"
+generator = true
+
+# Status badges
+[project.extra.status]
+new = "Recently added"
+deprecated = "Deprecated"
+
+# Social links
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/ourworldindata"
+
+[[project.extra.social]]
+icon = "fontawesome/solid/globe"
+link = "https://ourworldindata.org"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/instagram"
+link = "https://instagram.com/ourworldindata"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/x-twitter"
+link = "https://twitter.com/ourworldindata"
+
+# Navigation structure
+# Note: Zensical will auto-discover pages if nav is not specified
+[[project.nav]]
+title = "OWID documentation"
+path = "index.md"
+
+[[project.nav]]
+title = "etl"
+path = "etl.md"
+
+[[project.nav]]
+title = "owid-grapher"
+path = "owid-grapher.md"
+
+[[project.nav]]
+title = "covid"
+path = "covid.md"
+
+# Theme customization
+[theme]
+# Logo and favicon
+logo = "assets/site-logo.svg"
+favicon = "assets/favicon.png"
+
+# Font configuration
+[theme.font]
+text = "Helvetica Neue"
+
+# Color palette for light mode
+[[theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "indigo"
+accent = "pink"
+
+[theme.palette.toggle]
+icon = "material/brightness-7"
+name = "Switch to dark mode"
+
+# Color palette for dark mode
+[[theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "black"
+accent = "amber"
+
+[theme.palette.toggle]
+icon = "material/brightness-4"
+name = "Switch to light mode"
+
+# Features (commented out - enable as needed when Zensical supports them)
+# Note: Zensical may have different feature names or implementations
+# Refer to Zensical docs when enabling these
+
+# [theme.features]
+# Navigation features:
+# navigation_tabs = false
+# navigation_expand = false
+# navigation_sections = false
+# navigation_instant = false
+# navigation_instant_progress = false
+# navigation_prune = false
+# navigation_top = false
+# navigation_tracking = false
+
+# Content features:
+# content_code_copy = false
+# content_code_annotate = false
+# content_tooltips = false
+
+# Search features (Disco search engine):
+# search_share = false
+# search_suggest = false
+# search_highlight = false
+
+# Table of contents:
+# toc_follow = false
+# toc_integrate = false
+
+# Markdown extensions
+# Note: Zensical will eventually use CommonMark (Rust-based) instead of Python Markdown
+# These extensions may need to be adapted when Zensical's module system is released
+
+[markdown]
+# Basic markdown extensions
+extensions = ["attr_list", "md_in_html"]
+
+# Emoji support
+# Note: Zensical handles this differently - check docs when available
+# [markdown.emoji]
+# emoji_index = "twemoji"
+# emoji_generator = "to_svg"
+
+# Repository configuration (currently commented in mkdocs.yml)
+# [repository]
+# name = "owid/etl"
+# url = "https://github.com/owid/"
+
+# Migration notes:
+# 1. This config matches your current mkdocs.yml structure
+# 2. Zensical can still read mkdocs.yml, so you can use both during transition
+# 3. When Zensical stabilizes, test with: uv run zensical serve
+# 4. Update navigation structure if you prefer Zensical's auto-discovery
+# 5. Check Zensical docs for new module system (expected early 2026)
