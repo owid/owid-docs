@@ -10,21 +10,23 @@ site_author = "Our World in Data"
 site_description = "Technical documentation at Our World in Data."
 
 # Copyright notice (supports HTML)
-copyright = "Copyright &copy; 2025 Our World in Data"
+copyright = '<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> • <a href="privacy/">Privacy</a> • <a href="https://ourworldindata.org/">Our World in Data</a>'
 
 # Directory structure (defaults shown, customize if needed)
 # docs_dir = "docs"
 # site_dir = "site"
 
 # Theme configuration
+[project.theme]
 # variant = "modern"  # Options: "modern" (default) or "classic" (matches Material for MkDocs look)
 variant = "modern" # Using classic for consistency with current Material theme
+# Logo and favicon
+logo = "assets/site-logo.svg"
+favicon = "assets/favicon.png"
 
-# URL format
-# use_directory_urls = true  # Default: true (creates /page/ instead of /page.html)
+[project.theme.font]
+text = "Helvetica Neue"
 
-# Development server
-# dev_addr = "localhost:8000"  # Default address for local server
 
 # Custom data for templates
 [project.extra]
@@ -39,7 +41,7 @@ deprecated = "Deprecated"
 # Social links
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
-link = "https://github.com/ourworldindata"
+link = "https://github.com/owid"
 
 [[project.extra.social]]
 icon = "fontawesome/solid/globe"
@@ -51,7 +53,24 @@ link = "https://instagram.com/ourworldindata"
 
 [[project.extra.social]]
 icon = "fontawesome/brands/x-twitter"
-link = "https://twitter.com/ourworldindata"
+link = "https://x.com/ourworldindata"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/facebook"
+link = "https://facebook.com/ourworldindata"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/threads"
+link = "https://threads.com/ourworldindata"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/bluesky"
+link = "https://bsky.app/profile/ourworldindata.org"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/linkedin"
+link = "https://linkedin.com/company/ourworldindata"
+
 
 # Navigation structure
 # Note: Zensical will auto-discover pages if nav is not specified
@@ -70,16 +89,6 @@ path = "owid-grapher.md"
 [[project.nav]]
 title = "covid"
 path = "covid.md"
-
-# Theme customization
-[theme]
-# Logo and favicon
-logo = "assets/site-logo.svg"
-favicon = "assets/favicon.png"
-
-# Font configuration
-[theme.font]
-text = "Helvetica Neue"
 
 # Color palette for light mode
 [[theme.palette]]
@@ -157,3 +166,24 @@ extensions = ["attr_list", "md_in_html"]
 # 3. When Zensical stabilizes, test with: uv run zensical serve
 # 4. Update navigation structure if you prefer Zensical's auto-discovery
 # 5. Check Zensical docs for new module system (expected early 2026)
+
+
+# Palette toggle for automatic mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+# Palette toggle for light mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+# Palette toggle for dark mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
