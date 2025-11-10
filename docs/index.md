@@ -17,22 +17,23 @@ Here you can find the links to our various projects and their respective documen
 
 <div class="grid cards" markdown>
 
--   __[:fontawesome-solid-database: &nbsp; etl :octicons-link-external-16:](https://docs.owid.io/projects/etl)__
+-   !!! info "ETL"
 
-    ---
+        Learn about our data workflow and how we collect, process, and manage data for Our World in Data.
 
-    Learn more about our data workflow.
+        [:fontawesome-solid-database: &nbsp; etl](https://docs.owid.io/projects/etl){ .md-button .md-button--primary }
 
--   __[:material-chart-line: &nbsp; owid-grapher :octicons-link-external-16:](https://owid-grapher.readthedocs.io/en/docs-revamp-2023/)__
+-   !!! info "Grapher"
 
-    ---
+        Learn about our visualization tool, the Grapher, which powers the interactive charts on Our World in Data.
 
-    Learn more about our visualisation and website infrastructure.
+        [:material-chart-line: &nbsp; owid-grapher](https://owid-grapher.readthedocs.io/en/docs-revamp-2023/){ .md-button .md-button--primary } 
 
--   __[:material-virus: &nbsp; covid-19-data :octicons-link-external-16:](https://docs.owid.io/projects/etl/api/covid)__
 
-    ---
+-   !!! info "COVID-19 Data"
+    
+        Learn about our COVID-19 data collection, processing, and visualization efforts.
 
-    Learn more about our COVID-19 data.
-
+        [:fontawesome-solid-virus: &nbsp; covid-19-data](https://docs.owid.io/projects/etl/api/covid){ .md-button .md-button--primary }
 </div>
+
