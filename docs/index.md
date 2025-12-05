@@ -23,17 +23,19 @@ Here you can find the links to our various projects and their respective documen
 
         [:fontawesome-solid-database: &nbsp; etl](https://docs.owid.io/projects/etl){ .md-button .md-button--primary }
 
+-   !!! info "Grapher python library"
+    
+        We have a data viz library in python to plot charts similar to those in Our World in Data!
+
+        [:fontawesome-brands-python: &nbsp; owid-grapher-py](https://docs.owid.io/projects/owid-grapher-py){ .md-button .md-button--primary }
+
+        [:fontawesome-solid-virus: &nbsp; covid-19-data](https://docs.owid.io/projects/etl/api/covid){ .md-button .md-button--primary }
+
 -   !!! info "Grapher"
 
         Learn about our visualization tool, the Grapher, which powers the interactive charts on Our World in Data.
 
-        [:material-chart-line: &nbsp; owid-grapher](https://owid-grapher.readthedocs.io/en/docs-revamp-2023/){ .md-button .md-button--primary } 
+        [:material-chart-line: &nbsp; owid-grapher](https://github.com/owid/owid-grapher){ .md-button .md-button--primary } 
 
-
--   !!! info "COVID-19 Data"
-    
-        Learn about our COVID-19 data collection, processing, and visualization efforts.
-
-        [:fontawesome-solid-virus: &nbsp; covid-19-data](https://docs.owid.io/projects/etl/api/covid){ .md-button .md-button--primary }
 </div>
 
