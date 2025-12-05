@@ -29,7 +29,6 @@ Here you can find the links to our various projects and their respective documen
 
         [:fontawesome-brands-python: &nbsp; owid-grapher-py](https://docs.owid.io/projects/owid-grapher-py){ .md-button .md-button--primary }
 
-        [:fontawesome-solid-virus: &nbsp; covid-19-data](https://docs.owid.io/projects/etl/api/covid){ .md-button .md-button--primary }
 
 -   !!! info "Grapher"
 
@@ -39,3 +38,5 @@ Here you can find the links to our various projects and their respective documen
 
 </div>
 
+
+For COVID-related docs, refer to our [this link](https://docs.owid.io/projects/etl/api/covid).
