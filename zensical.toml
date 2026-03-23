@@ -12,6 +12,15 @@ site_description = "Technical documentation at Our World in Data."
 # Copyright notice (supports HTML)
 copyright = '<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> • <a href="privacy/">Privacy</a> • <a href="https://ourworldindata.org/">Our World in Data</a>'
 
+# Navigation structure
+nav = [
+  # { "OWID documentation" = "index.md" },
+  { "etl" = "etl.md" },
+  { "owid-grapher" = "owid-grapher.md" },
+  # { "covid" = "covid.md" },
+  { "Privacy" = "privacy.md" },
+]
+
 # Directory structure (defaults shown, customize if needed)
 # docs_dir = "docs"
 # site_dir = "site"
@@ -71,24 +80,6 @@ link = "https://bsky.app/profile/ourworldindata.org"
 icon = "fontawesome/brands/linkedin"
 link = "https://linkedin.com/company/ourworldindata"
 
-
-# Navigation structure
-# Note: Zensical will auto-discover pages if nav is not specified
-[[project.nav]]
-title = "OWID documentation"
-path = "index.md"
-
-[[project.nav]]
-title = "etl"
-path = "etl.md"
-
-[[project.nav]]
-title = "owid-grapher"
-path = "owid-grapher.md"
-
-[[project.nav]]
-title = "covid"
-path = "covid.md"
 
 # Color palette for light mode
 [[theme.palette]]

@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Privacy notice
 
 This documentation site is maintained by [Our World in Data](https://ourworldindata.org/).
