@@ -25,12 +25,15 @@ nav = [
 # docs_dir = "docs"
 # site_dir = "site"
 
+# Extra CSS
+extra_css = ["css/extra.css"]
+
 # Theme configuration
 [project.theme]
 # variant = "modern"  # Options: "modern" (default) or "classic" (matches Material for MkDocs look)
 variant = "modern" # Using classic for consistency with current Material theme
 # Logo and favicon
-logo = "assets/site-logo.svg"
+logo = "assets/owid-logo.svg"
 favicon = "assets/favicon.png"
 
 [project.theme.font]
