@@ -38,6 +38,9 @@ jobs:
       - name: Build docs
         run: uv run zensical build --clean
 
+      - name: Add _worker.js (path router for subprojects)
+        run: cp _worker.js site/_worker.js
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
