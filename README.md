@@ -1,62 +1,32 @@
 # OWID Documentation
 
-**Work in Progress**
+Umbrella site for OWID's technical documentation.
 
-Technical documentation for Our World in Data projects.
+Production URL during the parallel-hosting phase: **https://docs-cf.owid.io/**.
+The current production URL on ReadTheDocs is unchanged: **https://docs.owid.io/**.
 
-## Development
+## What's in this repo
 
-This project uses [uv](https://docs.astral.sh/uv/) for Python dependency management.
+| | |
+|---|---|
+| `docs/` | Source markdown for the umbrella landing page + links into subprojects |
+| `zensical.toml` | Site config (Zensical / Material) |
+| `_worker.js` | Cloudflare Pages worker — proxies subproject paths to other Pages projects (`/projects/etl/*`, `/projects/owid-grapher-py/*`, …) |
+| `.github/workflows/deploy-docs-cf.yml` | Builds + deploys this site to Cloudflare Pages on every push to `main` |
+| `.github/workflows/docs.yml` | Legacy GitHub Pages deploy (will be removed after the RtD cut-over) |
+| `.readthedocs.yml` | RtD build config (unchanged during the transition) |
+| `INFRASTRUCTURE.md` | How the CF deployment fits together + how to add a new subproject |
 
-### Setup
+## Local development
 
 ```bash
-# Install dependencies
 uv sync
-
-# Serve documentation locally (when Zensical is ready)
-uv run zensical serve
-
-# Build documentation
-uv run zensical build
+uv run zensical serve         # http://localhost:8000
+uv run zensical build --clean # output: site/
 ```
 
-### Current Status
+## Deployment
 
-- **Build System**: MkDocs with Material theme (currently active)
-- **Migration Target**: Zensical (Material team's new static site generator)
-- **Zensical Status**: Alpha (expected stable release early 2026)
+Pushes to `main` deploy to the [`owid-docs`](https://dash.cloudflare.com/?to=/:account/pages/view/owid-docs) Cloudflare Pages project. PRs get per-PR preview URLs at `<branch>.owid-docs.pages.dev`.
 
-### Configuration Files
-
-- `mkdocs.yml` - Current MkDocs configuration (actively used)
-- `zensical.toml` - Future Zensical configuration (ready for migration)
-- `pyproject.toml` - Python project dependencies
-
-### Migration to Zensical
-
-Zensical is the successor to Material for MkDocs, built by the same team. Key features:
-
-- **5x faster** rebuild times
-- **Backward compatible** - can read existing `mkdocs.yml`
-- **Modern design** with new Disco search engine
-- **Rust-powered** Markdown parser (coming 2026)
-
-#### When to Migrate
-
-- Monitor [Zensical roadmap](https://zensical.org/about/roadmap/)
-- Wait for stable release (expected early 2026)
-- Test with `zensical.toml` when CLI is available
-- Material for MkDocs will be supported for at least 12 months
-
-#### Migration Steps (when ready)
-
-1. Ensure Zensical ≥0.1.0 is installed
-2. Test build: `uv run zensical build`
-3. Compare output with MkDocs build
-4. Update CI/CD to use Zensical
-5. Optionally switch to `zensical.toml` for new features
-
-## Documentation
-
-Visit the documentation at: https://docs.owid.io/
+For the full picture — adding a new subproject, swapping the custom domain, cache-purge ops — see [`INFRASTRUCTURE.md`](./INFRASTRUCTURE.md).
