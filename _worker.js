@@ -17,9 +17,19 @@ const SUBPROJECTS = {
   "/projects/owid-grapher-py/": "https://owid-grapher-py-docs.pages.dev",
 };
 
+// Legacy ReadTheDocs URLs include an /en/latest segment (e.g.
+// /projects/etl/en/latest/, /en/latest/). 301 to the canonical form so
+// existing inbound links from blog posts / Slack / bookmarks keep working.
+const RTD_LEGACY = /\/en\/latest(\/|$)/;
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (RTD_LEGACY.test(url.pathname)) {
+      url.pathname = url.pathname.replace(RTD_LEGACY, "$1") || "/";
+      return Response.redirect(url.toString(), 301);
+    }
 
     for (const [prefix, origin] of Object.entries(SUBPROJECTS)) {
       if (url.pathname.startsWith(prefix)) {
