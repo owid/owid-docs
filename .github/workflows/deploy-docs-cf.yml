@@ -1,0 +1,52 @@
+name: Deploy docs to Cloudflare Pages
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-docs-cf-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Override site_url for the Cloudflare build
+        run: |
+          sed -i 's|^site_url = .*|site_url = "https://owid-docs.pages.dev/"|' zensical.toml
+
+      - name: Build docs
+        run: uv run zensical build --clean
+
+      - name: Add _worker.js (path router for subprojects)
+        run: cp _worker.js site/_worker.js
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy site
+            --project-name=owid-docs
+            --branch=${{ github.head_ref || github.ref_name }}
