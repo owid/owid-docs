@@ -14,6 +14,7 @@
 
 const SUBPROJECTS = {
   "/projects/etl/": "https://owid-etl-docs.pages.dev",
+  "/projects/owid-grapher-py/": "https://owid-grapher-py-docs.pages.dev",
 };
 
 export default {
