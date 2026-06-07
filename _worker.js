@@ -49,6 +49,14 @@ export default {
     }
 
     for (const [prefix, origin] of Object.entries(SUBPROJECTS)) {
+      // Bare project root without trailing slash (/projects/etl) — redirect
+      // to the canonical slash form, otherwise it falls through to the
+      // umbrella's static assets and 404s. Deeper slash-less paths don't
+      // need this: the proxied Pages project 308s them itself.
+      if (url.pathname === prefix.slice(0, -1)) {
+        url.pathname = prefix;
+        return Response.redirect(url.toString(), 301);
+      }
       if (url.pathname.startsWith(prefix)) {
         const target = `${origin}${url.pathname}${url.search}`;
         return fetch(target, request);
