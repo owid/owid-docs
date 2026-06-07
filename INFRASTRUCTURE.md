@@ -3,7 +3,7 @@
 This repo is the **umbrella** of OWID's technical documentation. Its content is small (a landing page plus links into the subprojects). What makes it special is that it owns the custom domain and acts as a **router** in front of subproject Pages projects, so one URL transparently serves docs from multiple GitHub repos.
 
 ```
-                          docs-cf.owid.io  (later: docs.owid.io)
+                          docs.owid.io  (staging alias: docs-cf.owid.io)
                                  │
                                  ▼
                   ┌──────────────────────────────┐
@@ -34,7 +34,7 @@ This repo is the **umbrella** of OWID's technical documentation. Its content is 
 
 Each subproject repo owns:
 - a `.github/workflows/deploy-docs-cf.yml` that builds the docs and uploads to its Pages project via `wrangler pages deploy`
-- a sed-override of `site_url` in CI so the canonical/sitemap URLs reflect the production path on `docs-cf.owid.io/projects/<short>/`
+- a sed-override of `site_url` in CI so the canonical/sitemap URLs reflect the production path on `docs.owid.io/projects/<short>/`
 
 Per-PR previews still work on each project's own `*.pages.dev` URL — the umbrella router is only invoked for traffic to the custom domain.
 
@@ -44,9 +44,10 @@ Lives at repo root, copied into `site/` by the deploy workflow so CF Pages picks
 
 Responsibilities, in order:
 
-1. **Legacy URL rewrite** — strip the `/en/latest` segment baked into old ReadTheDocs links and 301 to the canonical path.
-2. **Subproject routing** — match a `SUBPROJECTS` prefix, `fetch()` the same path on the target Pages project, and stream the response back.
-3. **Fallback** — `env.ASSETS.fetch(request)` serves this repo's own static assets (umbrella landing page, CSS, etc.).
+1. **COVID docs redirect** — `/projects/covid/*` 301s to the legacy COVID docs at their native ReadTheDocs URL (`owidcovid-19-data.readthedocs.io`); they were never migrated to CF Pages. Runs before the `/en/latest` rewrite because RtD needs the version segment intact.
+2. **Legacy URL rewrite** — strip the `/en/latest` segment baked into old ReadTheDocs links and 301 to the canonical path.
+3. **Subproject routing** — match a `SUBPROJECTS` prefix, `fetch()` the same path on the target Pages project, and stream the response back.
+4. **Fallback** — `env.ASSETS.fetch(request)` serves this repo's own static assets (umbrella landing page, CSS, etc.).
 
 To add a new subproject, append one line to the `SUBPROJECTS` map.
 
@@ -61,7 +62,7 @@ Concrete example: a hypothetical `owid/foo-docs` repo serving its docs at `docs.
    ```
 
 2. **Add a workflow** in `owid/foo` mirroring [`.github/workflows/deploy-docs-cf.yml`](./.github/workflows/deploy-docs-cf.yml) from this repo or from `owid/etl`. Two things to adjust:
-   - sed-replace `site_url` to `https://docs-cf.owid.io/projects/foo/` (later `docs.owid.io/projects/foo/`).
+   - sed-replace `site_url` to `https://docs.owid.io/projects/foo/`.
    - Stage the build into `staging/projects/foo/` before `wrangler pages deploy`.
 
 3. **Add repo secrets** in `owid/foo`: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` (same values used by the other repos).
@@ -88,7 +89,7 @@ CF dashboard → **owid.io zone** → Caching → Configuration → Purge Cache 
 
 ### Swapping the custom domain
 
-Currently `docs-cf.owid.io` is bound to the `owid-docs` Pages project. To re-attach to another project (e.g., during emergency rollback), detach from the source first, wait ~30 s, then attach to the target.
+`docs.owid.io` (plus the staging alias `docs-cf.owid.io`) is bound to the `owid-docs` Pages project. To re-attach to another project (e.g., during emergency rollback), detach from the source first, wait ~30 s, then attach to the target.
 
 ### Production branch
 
@@ -103,7 +104,7 @@ Each subproject repo + this one needs:
 
 One token + account ID pair works for all repos.
 
-## Related deployments (unchanged today)
+## Related deployments (legacy)
 
-- **ReadTheDocs** — still serves `https://docs.owid.io/` and the subprojects. Builds untouched. Will be decommissioned once the CF mirror has been validated and `docs.owid.io` DNS is repointed.
-- **GitHub Pages** — `.github/workflows/docs.yml` in this repo still publishes a copy. No active consumer; can be removed after the cut-over.
+- **ReadTheDocs** — no longer serves `https://docs.owid.io/` (DNS was repointed to CF Pages). The RtD projects (`owid-docs`, `owid-etl`, `owid-grapher-py`) can be archived once the cut-over has been stable for a while. The **COVID docs** stay on RtD indefinitely at `https://owidcovid-19-data.readthedocs.io/` — `_worker.js` redirects `/projects/covid/*` there. The `docs.owid.io` custom domain must stay removed from the RtD `owid-docs` project, otherwise RtD redirects the COVID docs' native URL back to `docs.owid.io` and the redirect loops.
+- **GitHub Pages** — `.github/workflows/docs.yml` in this repo still publishes a copy. No active consumer; can be removed now that the cut-over is done.

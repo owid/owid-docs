@@ -2,8 +2,8 @@
 //
 // When present at the deployment root, this file intercepts ALL requests
 // for this Pages project. We use it as a thin router so that one custom
-// domain (docs-cf.owid.io and later docs.owid.io) can transparently serve
-// docs from multiple source repos:
+// domain (docs.owid.io) can transparently serve docs from multiple
+// source repos:
 //
 //   /projects/etl/*   →  proxied to https://owid-etl-docs.pages.dev/projects/etl/*
 //   everything else   →  served from this project's own static assets
@@ -17,6 +17,15 @@ const SUBPROJECTS = {
   "/projects/owid-grapher-py/": "https://owid-grapher-py-docs.pages.dev",
 };
 
+// The legacy COVID docs were never migrated to CF Pages — they stay on
+// ReadTheDocs at their native URL. This must be checked BEFORE the
+// /en/latest rewrite below: RtD needs the version segment intact.
+// NOTE: requires docs.owid.io to be removed as custom domain from the
+// RtD project at cut-over, otherwise RtD bounces the native URL back
+// here and we loop.
+const COVID_PREFIX = "/projects/covid";
+const COVID_ORIGIN = "https://owidcovid-19-data.readthedocs.io";
+
 // Legacy ReadTheDocs URLs include an /en/latest segment (e.g.
 // /projects/etl/en/latest/, /en/latest/). 301 to the canonical form so
 // existing inbound links from blog posts / Slack / bookmarks keep working.
@@ -25,6 +34,14 @@ const RTD_LEGACY = /\/en\/latest(\/|$)/;
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (
+      url.pathname === COVID_PREFIX ||
+      url.pathname.startsWith(`${COVID_PREFIX}/`)
+    ) {
+      const rest = url.pathname.slice(COVID_PREFIX.length);
+      return Response.redirect(`${COVID_ORIGIN}${rest}${url.search}`, 301);
+    }
 
     if (RTD_LEGACY.test(url.pathname)) {
       url.pathname = url.pathname.replace(RTD_LEGACY, "$1") || "/";
